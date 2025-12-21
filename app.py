@@ -4,12 +4,6 @@ import streamlit_authenticator as stauth
 import yaml
 from yaml.loader import SafeLoader
 
-senha_desejada = "admin"
-
-hashed = bcrypt.hashpw(senha_desejada.encode(), bcrypt.gensalt()).decode()
-st.error(f"COPIE ESTE CÓDIGO E COLE NO YAML: {hashed}")
-st.stop()
-
 # --- CONFIGURAÇÃO INICIAL ---
 st.set_page_config(page_title="Portal da Mentoria", page_icon="🔐", layout="wide")
 
@@ -178,5 +172,6 @@ elif st.session_state["authentication_status"]:
                  st.link_button("📄 Baixar Dieta PDF", dados_usuario['link_dieta'])
             else:
                 st.warning("Dieta sendo preparada.")
+
 
 
