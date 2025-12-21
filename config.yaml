@@ -32,5 +32,6 @@ credentials:
       name: 'Administrador'
       email: 'admin@email.com'
       # Senha: admin (gerada como hash)
-      password: '$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW'
+      password: '$2b$12$12$bjEKuyjJggGhKvWouNPvAu3M4uTcNx9Ymy.Qcxjmw4maWm8A1/Ubq'
       role: 'admin'
+
