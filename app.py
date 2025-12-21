@@ -3,6 +3,10 @@ import streamlit_authenticator as stauth
 import yaml
 from yaml.loader import SafeLoader
 
+senha_que_eu_quero = "admin"
+codigo_gerado = stauth.Hasher([senha_que_eu_quero]).generate()
+st.error(f"COPIE ESTE CÓDIGO PARA O CONFIG.YAML: {codigo_gerado[0]}")
+
 # --- CONFIGURAÇÃO INICIAL ---
 st.set_page_config(page_title="Portal da Mentoria", page_icon="🔐", layout="wide")
 
@@ -171,3 +175,4 @@ elif st.session_state["authentication_status"]:
                  st.link_button("📄 Baixar Dieta PDF", dados_usuario['link_dieta'])
             else:
                 st.warning("Dieta sendo preparada.")
+
