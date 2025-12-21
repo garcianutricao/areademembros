@@ -31,7 +31,7 @@ authenticator = stauth.Authenticate(
 )
 
 # Cria a tela de login
-name, authentication_status, username = authenticator.login('main')
+name, authentication_status, username = authenticator.login('Login', 'main')
 
 # --- LÓGICA DE ACESSO ---
 
@@ -93,3 +93,4 @@ elif authentication_status:
         st.header("Sua rotina de exercícios")
         st.video("https://www.youtube.com/watch?v=inpok4MKVLM") # Exemplo de vídeo
         st.write("Registre seu treino de hoje no app parceiro.")
+
