@@ -44,15 +44,16 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# --- CARREGAR DADOS (DO ARQUIVO YAML) ---
+# --- CARREGAR DADOS MANUALMENTE (Para acesso aos dados do usuário depois) ---
 try:
     with open('config.yaml', 'r', encoding='utf-8') as file:
         config = yaml.load(file, Loader=SafeLoader)
 except FileNotFoundError:
-    st.error("Erro: O arquivo config.yaml não foi encontrado. Verifique se ele está no GitHub.")
+    st.error("Erro: O arquivo config.yaml não foi encontrado.")
     st.stop()
 
-# --- AUTENTICAÇÃO (CORRIGIDO PARA VERSÃO NOVA) ---
+# --- AUTENTICAÇÃO (CORRIGIDA PARA NOVA VERSÃO) ---
+# Na versão nova, passamos o caminho do arquivo ou o dicionário completo
 authenticator = stauth.Authenticate(
     config['credentials'],
     config['cookie']['name'],
@@ -60,23 +61,21 @@ authenticator = stauth.Authenticate(
     config['cookie']['expiry_days']
 )
 
-# A linha mágica que mudou: agora precisa de 'Login' e 'main'
-authenticator.login('Login', 'main')
+# --- TELA DE LOGIN (CORRIGIDA) ---
+# O erro acontecia aqui. Agora passamos 'main' como primeiro argumento.
+# 'fields' define o título do formulário.
+name, authentication_status, username = authenticator.login('main', fields={'Form name': 'Login'})
 
-# --- VERIFICAÇÃO DE STATUS (LÓGICA NOVA) ---
-
-if st.session_state["authentication_status"] is False:
+# --- LÓGICA DE ACESSO ---
+if authentication_status is False:
     st.error('Usuário ou senha incorretos.')
     
-elif st.session_state["authentication_status"] is None:
+elif authentication_status is None:
     st.warning('Por favor, faça login para acessar sua área.')
     
-elif st.session_state["authentication_status"]:
+elif authentication_status:
     
     # --- AQUI COMEÇA A ÁREA DO ALUNO (SÓ SE ESTIVER LOGADO) ---
-    
-    # Pega o usuário atual
-    username = st.session_state["username"]
     
     # Busca os dados desse usuário específico no YAML
     if username in config['credentials']['usernames']:
@@ -87,7 +86,7 @@ elif st.session_state["authentication_status"]:
     
     # --- BARRA LATERAL (MENU) ---
     with st.sidebar:
-        st.title(f"Olá, {dados_usuario['name']}! 👋")
+        st.title(f"Olá, {name}! 👋") # Usamos a variável 'name' retornada pelo login
         st.caption(f"Plano Ativo: **{dados_usuario.get('plano', 'Padrão')}**")
         
         st.divider()
@@ -105,7 +104,7 @@ elif st.session_state["authentication_status"]:
     # --- TELA 1: DASHBOARD ---
     if menu == "🏠 Dashboard":
         # Banner Principal
-        st.image("https://placehold.co/1200x300/111/00E676?text=BEM-VINDO+AO+SEU+PORTAL", use_column_width=True)
+        st.image("https://placehold.co/1200x300/111/00E676?text=BEM-VINDO+AO+SEU+PORTAL", use_container_width=True)
         
         # Área de Avisos Pessoais
         if 'avisos' in dados_usuario:
@@ -130,7 +129,8 @@ elif st.session_state["authentication_status"]:
         col_video, col_lista = st.columns([2, 1])
         
         with col_video:
-            st.video("https://www.youtube.com/watch?v=inpok4MKVLM") # Vídeo Exemplo
+            # Exemplo de vídeo do YouTube
+            st.video("https://www.youtube.com/watch?v=inpok4MKVLM") 
             st.markdown("### Aula 01: Introdução ao Método")
             st.write("Nesta aula vamos alinhar as expectativas e definir suas metas.")
             
