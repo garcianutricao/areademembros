@@ -1,59 +1,77 @@
 import streamlit as st
 
-# Configuração da Página
-st.set_page_config(page_title="Consultoria Nutri", page_icon="🌿", layout="wide")
+# Configuração da página
+st.set_page_config(page_title="Área do Membro", page_icon="💪")
 
-# Barra Lateral (Menu de Navegação)
-st.sidebar.title("Navegação")
-pagina = st.sidebar.radio(
-    "Ir para:",
-    ["🏠 Início", "📹 Vídeos Explicativos", "❓ Dúvidas Frequentes", "🧮 Calculadora de IMC"]
-)
+# Título Principal
+st.title("Área do Membro - Bem-vindo à sua jornada de transformação!")
 
-# --- PÁGINA INICIAL ---
-if pagina == "🏠 Início":
-    st.title("🌿 Bem-vindo à sua Área do Paciente")
+st.write("Olá! Seja muito bem-vindo(a) à sua *Área do Membro*.")
+st.success("Estou muito feliz por você estar aqui e dar esse passo importante em direção a uma vida mais saudável e equilibrada.")
+
+st.info("Esta é a sua central de recursos. Explore cada seção com calma e lembre-se: *transformação real acontece um dia de cada vez*. 💪")
+
+st.divider()
+
+# Seção: Comece por aqui
+st.header("🚀 Comece por aqui")
+st.write("Antes de tudo, assista aos vídeos abaixo:")
+
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.markdown("> *📹 **Vídeo 1: Introdução***\n\n(Vídeo aqui)")
+with col2:
+    st.markdown("> *📹 **Vídeo 2: Como Funciona***\n\n(Vídeo aqui)")
+with col3:
+    st.markdown("> *📹 **Vídeo 3: Primeiros Passos***\n\n(Vídeo aqui)")
+
+st.divider()
+
+# Seção: Tutoriais
+st.header("📱 Tutoriais")
+
+with st.expander("Tutorial 1: Como usar o aplicativo de registro alimentar"):
     st.markdown("""
-    Olá! Fico muito feliz em ter você aqui.
-    
-    Esta plataforma foi criada para centralizar todo o nosso processo.
-    Aqui você vai encontrar:
-    * Tutoriais de como seguir a dieta.
-    * Explicações sobre suplementação.
-    * Ferramentas para acompanhar seu progresso.
-    
-    **Selecione uma opção no menu ao lado para começar.**
+    - Faça o download do aplicativo recomendado
+    - Configure seu perfil com seus dados e objetivos
+    - Registre cada refeição com fotos
+    - Acompanhe suas estatísticas diárias
     """)
-    
-    # Exemplo de aviso importante
-    st.info("🔔 Aviso: O seu plano alimentar será enviado pelo WhatsApp em até 24h após a anamnese.")
 
-# --- PÁGINA DE VÍDEOS ---
-elif pagina == "📹 Vídeos Explicativos":
-    st.title("Biblioteca de Conteúdo")
-    
-    st.subheader("1. Como funciona a consultoria")
-    # Substitua pelo link do seu vídeo não listado
-    st.video("https://www.youtube.com/watch?v=SEU_LINK_AQUI")
-    
-    st.divider()
-    
-    st.subheader("2. Como usar o aplicativo de dieta")
-    st.video("https://www.youtube.com/watch?v=SEU_OUTRO_LINK")
+with st.expander("Tutorial 2: Como acompanhar sua evolução"):
+    st.markdown("""
+    - Registre medidas e peso semanalmente
+    - Tire fotos de progresso mensalmente
+    - Celebre cada pequena vitória!
+    """)
 
-# --- PÁGINA DE DÚVIDAS (FAQ) ---
-elif pagina == "❓ Dúvidas Frequentes":
-    st.title("Perguntas Comuns")
-    
-    # O st.expander cria aquele efeito de "sanfona" igual ao Notion
-    with st.expander("🍷 Posso beber álcool na dieta?"):
-        st.write("""
-        O álcool inibe a oxidação de gordura. Se você tiver um evento, 
-        prefira destilados com tônica zero ou vinho seco, e intercale com água.
-        """)
+with st.expander("Tutorial 3: Planejamento de refeições"):
+    st.markdown("""
+    - Use a função de planejamento semanal
+    - Monte sua lista de compras
+    - Mantenha opções saudáveis sempre à mão
+    """)
 
-    with st.expander("💊 Preciso tomar Whey Protein?"):
-        st.write("""
-        Não é obrigatório, mas ajuda muito na praticidade para bater a meta de proteínas.
-        Se você consegue comer carnes/ovos o suficiente, não precisa.
-        """)
+st.divider()
+
+# Seção: Dúvidas (FAQ)
+st.header("❓ Dúvidas Frequentes")
+
+faq = {
+    "Como devo registrar minhas refeições?": "Registre todas as suas refeições no aplicativo recomendado. Seja honesto nos registros.",
+    "O que fazer se eu 'sair da dieta'?": "Respire fundo. *Ninguém é perfeito*. Retome seus hábitos na próxima refeição.",
+    "Quanto tempo até ver resultados?": "Mudanças físicas entre 3-4 semanas. Mudanças internas acontecem mais cedo.",
+    "Como entro em contato?": "Mensagem pelo WhatsApp. Respondo em até 24-48 horas úteis."
+}
+
+for pergunta, resposta in faq.items():
+    st.markdown(f"**{pergunta}**")
+    st.caption(resposta)
+    st.write("") # Espaço
+
+st.divider()
+
+# Mensagem Final
+st.markdown("## Mensagem Final")
+st.warning("*Você tomou a melhor decisão ao investir em você mesmo(a).* Estou aqui para te apoiar.")
+st.write("Vamos juntos nessa transformação! 🌱")
