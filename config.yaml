@@ -1,0 +1,28 @@
+cookie:
+  expiry_days: 30
+  key: 'assinatura_super_secreta'
+  name: 'login_nutri_cookie'
+
+credentials:
+  usernames:
+    joao:
+      name: 'João Silva'
+      email: 'joao@email.com'
+      # A senha abaixo é "123456" (criptografada)
+      password: '$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW'
+      # --- DADOS ESPECÍFICOS DO PACIENTE ---
+      plano: 'Hipertrofia Acelerada'
+      progresso: 45
+      link_dieta: 'https://docs.google.com/dieta-joao'
+      avisos: 'João, parabéns pela evolução! Lembre de beber água.'
+
+    maria:
+      name: 'Maria Fernandes'
+      email: 'maria@email.com'
+      # A senha abaixo é "123456" (criptografada)
+      password: '$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW'
+      # --- DADOS ESPECÍFICOS DO PACIENTE ---
+      plano: 'Emagrecimento Saudável'
+      progresso: 10
+      link_dieta: 'https://docs.google.com/dieta-maria'
+      avisos: 'Maria, já liberei o novo módulo de receitas.'
